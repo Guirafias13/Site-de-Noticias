@@ -1,0 +1,678 @@
+/* ==========================================================================
+   1. VARIÁVEIS, CONFIGURAÇÕES GERAIS E RESET
+   ========================================================================== */
+:root {
+    --cor-principal: #202024;
+    --cor-destaque: #8257e5;
+    /* Roxo padrão do site */
+    --cor-fundo: #121214;
+    --cor-texto-claro: #fff;
+    --cor-texto: #e1e1e6;
+    --cor-texto-mutado: #a8a8b3;
+    --curvatura: 10px 0 10px 0;
+    --sombra-padrao: 0 4px 15px rgba(0, 0, 0, 0.35);
+
+    /* VARIÁVEIS DE CORES DOS TÓPICOS */
+    --cor-filmes: #e52222;
+    /* Vermelho */
+    --cor-games: #2d89ef;
+    /* Azul */
+    --cor-tecnologia: #00b37e;
+    /* Verde */
+    --cor-animes: #c49d03;
+    /* Amarelo */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--cor-texto-claro);
+}
+
+/* ==========================================================================
+   2. CABEÇALHO E MENU DE NAVEGAÇÃO (CORREÇÃO DE RESPONSIVIDADE)
+   ========================================================================== */
+header {
+    background-color: var(--cor-principal);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--cor-destaque);
+    box-shadow: var(--sombra-padrao);
+    flex-wrap: wrap;
+    /* Permite que o menu desça de linha em telas pequenas sem sumir */
+    gap: 1rem;
+    /* Cria um espaçamento seguro entre a logo e os links */
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.logo a {
+    text-decoration: none;
+    color: var(--cor-texto-claro);
+    display: inline-block;
+}
+
+.logo span {
+    color: var(--cor-destaque);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Evita que os links quebrem o layout em celulares */
+    gap: 15px;
+    /* Substitui a margem fixa por um espaçamento inteligente entre botões */
+}
+
+nav a {
+    color: #c4c4cc;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s ease;
+    padding-bottom: 4px;
+    margin-left: 0 !important;
+    /* Remove a margem antiga que jogava o texto para fora da tela */
+}
+
+/* Hover padrão da Home (Roxo) */
+nav a.nav-home:hover,
+nav a.nav-home.active {
+    color: var(--cor-destaque);
+    border-bottom: 2px solid var(--cor-destaque);
+}
+
+/* Hovers específicos por categoria */
+nav a.nav-filmes:hover,
+nav a.nav-filmes.active {
+    color: var(--cor-filmes);
+    border-bottom: 2px solid var(--cor-filmes);
+}
+
+nav a.nav-games:hover,
+nav a.nav-games.active {
+    color: var(--cor-games);
+    border-bottom: 2px solid var(--cor-games);
+}
+
+nav a.nav-tecnologia:hover,
+nav a.nav-tecnologia.active {
+    color: var(--cor-tecnologia);
+    border-bottom: 2px solid var(--cor-tecnologia);
+}
+
+nav a.nav-animes:hover,
+nav a.nav-animes.active {
+    color: var(--cor-animes);
+    border-bottom: 2px solid var(--cor-animes);
+}
+
+/* ==========================================================================
+   3. BANNER DE DESTAQUE (HOME)
+   ========================================================================== */
+.destaque-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+}
+
+.destaque {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.85)), url('img/vingadores.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    padding: 5rem 2rem;
+    border-radius: var(--curvatura);
+    margin-bottom: 2rem;
+    border: 5px solid var(--cor-destaque);
+    box-shadow: var(--sombra-padrao);
+}
+
+.destaque h1 {
+    font-size: 2.2rem;
+    margin: 1rem 0 0.5rem 0;
+    color: var(--cor-texto-claro);
+}
+
+.destaque p {
+    color: #c4c4cc;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #00b37e;
+    color: var(--cor-texto-claro);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--curvatura);
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #00875f;
+}
+
+/* ==========================================================================
+   4. GRADE DE NOTÍCIAS E CARDS (BORDAS DINÂMICAS)
+   ========================================================================== */
+
+.titulo-secao {
+    color: var(--cor-texto);
+    font-size: 2rem;
+    margin: 2% 0 2% 0;
+    padding-left: 10px;
+}
+
+
+.noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--cor-principal);
+    border-radius: var(--curvatura);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--sombra-padrao);
+    border-bottom: 4px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.card-img-foto {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-body h3 {
+    font-size: 1.2rem;
+    margin: 0.8rem 0 0.5rem 0;
+    color: var(--cor-texto-claro);
+}
+
+.card-body p {
+    color: var(--cor-texto-mutado);
+    font-size: 0.95rem;
+}
+
+.tag {
+    background-color: var(--cor-destaque);
+    color: var(--cor-texto-claro);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Aplicação das variáveis nas bordas e tags dos cards */
+.card.filmes {
+    border-bottom-color: var(--cor-filmes);
+}
+
+.card.games {
+    border-bottom-color: var(--cor-games);
+}
+
+.card.tecnologia {
+    border-bottom-color: var(--cor-tecnologia);
+}
+
+.card.animes {
+    border-bottom-color: var(--cor-animes);
+}
+
+.card.filmes .tag {
+    background-color: var(--cor-filmes);
+}
+
+.card.games .tag {
+    background-color: var(--cor-games);
+}
+
+.card.tecnologia .tag {
+    background-color: var(--cor-tecnologia);
+}
+
+.card.animes .tag {
+    background-color: var(--cor-animes);
+}
+
+/* ==========================================================================
+   5. PÁGINA DE LEITURA INTERNA
+   ========================================================================== */
+article.noticia-completa {
+    padding: 28px;
+    border-radius: var(--curvatura);
+    background-color: var(--cor-principal);
+    box-shadow: var(--sombra-padrao);
+
+    /* Substitua a borda antiga por esta transparente */
+    border-left: 5px solid transparent;
+}
+
+/* --- Aplicação das cores nas bordas laterais da notícia --- */
+article.noticia-completa.filmes {
+    border-left-color: var(--cor-filmes);
+}
+
+article.noticia-completa.games {
+    border-left-color: var(--cor-games);
+}
+
+article.noticia-completa.tecnologia {
+    border-left-color: var(--cor-tecnologia);
+}
+
+article.noticia-completa.animes {
+    border-left-color: var(--cor-animes);
+}
+
+/* --- Aplicação das cores nas tags internas da notícia --- */
+article.noticia-completa.filmes .tag {
+    background-color: var(--cor-filmes);
+}
+
+article.noticia-completa.games .tag {
+    background-color: var(--cor-games);
+}
+
+article.noticia-completa.tecnologia .tag {
+    background-color: var(--cor-tecnologia);
+}
+
+article.noticia-completa.animes .tag {
+    background-color: var(--cor-animes);
+}
+
+
+.noticia-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.noticia-header .data {
+    color: var(--cor-texto-mutado);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.noticia-header .titulo {
+    width: 100%;
+    font-size: 2.8rem;
+    color: var(--cor-texto-claro);
+    margin-top: 1rem;
+    line-height: 1.2;
+}
+
+.noticia-imagem-topo {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: var(--curvatura);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    object-fit: contain;
+}
+
+.conteudo-noticia p {
+    font-size: 1.15rem;
+    color: var(--cor-texto);
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+/* ==========================================================================
+   6. PLAYERS DE VÍDEO (YOUTUBE)
+   ========================================================================== */
+.video-container {
+    position: relative;
+    padding-bottom: 33.75%;
+    height: 0;
+    overflow: hidden;
+    max-width: 60%;
+    margin: 2.5rem auto 1rem auto;
+    background-color: #000;
+    border-radius: var(--curvatura);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ==========================================================================
+   7. ESPAÇOS PUBLICITÁRIOS (ANÚNCIOS OTIMIZADOS)
+   ========================================================================== */
+.anuncio-tag {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--cor-texto-mutado);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+.anuncio-horizontal {
+    grid-column: 1 / -1;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.anuncio-link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+}
+
+.anuncio-img-banner {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    /* Mantém o banner compacto e bem centralizado */
+    object-fit: contain;
+    border-radius: var(--curvatura);
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.anuncio-img-banner:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 15px rgba(130, 87, 229, 0.4);
+}
+
+/* ==========================================================================
+   8. RODAPÉ (FOOTER ALINHADO E TOTALMENTE LEGÍVEL)
+   ========================================================================== */
+footer {
+    background-color: var(--cor-principal);
+    padding: 3rem 5% 1.5rem 5%;
+    margin-top: 5rem;
+    border-top: 2px solid #323238;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.footer-col h4 {
+    color: var(--cor-texto-claro);
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 3px solid var(--cor-destaque);
+    padding-left: 0.6rem;
+    line-height: 1.2;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.footer-col ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-col ul li a,
+.footer-col ul li a:visited {
+    color: var(--cor-texto-mutado) !important;
+    text-decoration: none !important;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    display: inline-block;
+}
+
+.footer-col ul li a:hover {
+    color: #9466ff !important;
+}
+
+.social-links {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--curvatura);
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: #29292e;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.social-btn.instagram:hover {
+    background-color: #e1306c;
+    transform: translateY(-2px);
+}
+
+.social-btn.youtube:hover {
+    background-color: #ff0000;
+    transform: translateY(-2px);
+}
+
+.social-btn.tiktok:hover {
+    background-color: #010101;
+    transform: translateY(-2px);
+}
+
+.social-btn.discord:hover {
+    background-color: #5865f2;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #323238;
+    color: #8d8d99;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   9. RESPONSIVIDADE (CELULARES)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* Ajustes Gerais de Container */
+    .container {
+        margin: 1rem auto;
+        padding: 0 1rem;
+    }
+
+    /* Cabeçalho e Menu */
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        gap: 1.2rem;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 0.95rem;
+    }
+
+    /* Títulos e Destaque */
+    .titulo-secao {
+        font-size: 1.6rem;
+        margin: 1.5rem 0 1rem 0;
+    }
+
+    /* Responsividade do Destaque */
+    .destaque {
+        padding: 3rem 1.5rem !important; /* Reduz o espaçamento interno no celular */
+        background-position: center center !important; /* Centraliza melhor a imagem de fundo */
+        border-width: 3px !important; /* Diminui a espessura da borda */
+        margin-bottom: 1.5rem !important;
+    }
+
+    .destaque h1 {
+        font-size: 1.6rem !important; /* Reduz o tamanho da fonte para não quebrar bizarro */
+        line-height: 1.3 !important;
+    }
+
+    .destaque p {
+        font-size: 0.95rem !important; /* Deixa o texto descritivo mais confortável para ler */
+        margin-bottom: 1.2rem !important;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem !important; /* Ajusta o tamanho do botão "Ler mais" */
+        font-size: 0.9rem !important;
+    }
+
+    /* Grade de Notícias (Força 1 coluna em telas muito pequenas se necessário) */
+    .noticias-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    /* Interna da Notícia */
+    .noticia-header .titulo {
+        font-size: 1.8rem;
+    }
+
+    .conteudo-noticia p {
+        font-size: 1.05rem;
+        text-align: left;
+        /* Melhora a leitura sem hifenação forçada no celular */
+    }
+
+    /* Players de Vídeo (Ocupa a largura total na tela pequena) */
+    .video-container {
+        max-width: 100%;
+        padding-bottom: 56.25%;
+        /* Proporção 16:9 perfeita para mobile */
+        margin: 1.5rem 0;
+    }
+
+    /* Espaços Publicitários */
+    .anuncio-img-banner {
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+
+    /* Rodapé (Footer Totalmente Adaptável) */
+    footer {
+        padding: 2.5rem 1rem 1.5rem 1rem;
+        margin-top: 3rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footer-col {
+        min-width: 100%;
+        align-items: center;
+        /* Centraliza o conteúdo no mobile */
+        text-align: center;
+    }
+
+    .footer-col h4 {
+        border-left: none;
+        border-bottom: 3px solid var(--cor-destaque);
+        /* Transforma a barra em linha inferior */
+        padding-left: 0;
+        padding-bottom: 0.4rem;
+        display: inline-block;
+    }
+
+    .social-links {
+        justify-content: center;
+        /* Centraliza os botões de redes sociais */
+        width: 103%;
+    }
+}
