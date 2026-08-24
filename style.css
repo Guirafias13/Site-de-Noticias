@@ -32,9 +32,11 @@
 body {
     margin: 0;
     background-color: var(--cor-fundo);
-    color: var(--cor-texto);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--cor-texto) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -53,7 +55,7 @@ h6 {
 }
 
 /* ==========================================================================
-   2. CABEÇALHO E MENU DE NAVEGAÇÃO (CORREÇÃO DE RESPONSIVIDADE)
+   2. CABEÇALHO E MENU DE NAVEGAÇÃO
    ========================================================================== */
 header {
     background-color: var(--cor-principal);
@@ -64,9 +66,7 @@ header {
     border-bottom: 2px solid var(--cor-destaque);
     box-shadow: var(--sombra-padrao);
     flex-wrap: wrap;
-    /* Permite que o menu desça de linha em telas pequenas sem sumir */
     gap: 1rem;
-    /* Cria um espaçamento seguro entre a logo e os links */
 }
 
 .logo {
@@ -89,9 +89,7 @@ nav {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    /* Evita que os links quebrem o layout em celulares */
     gap: 15px;
-    /* Substitui a margem fixa por um espaçamento inteligente entre botões */
 }
 
 nav a {
@@ -101,7 +99,6 @@ nav a {
     transition: 0.2s ease;
     padding-bottom: 4px;
     margin-left: 0 !important;
-    /* Remove a margem antiga que jogava o texto para fora da tela */
 }
 
 /* Hover padrão da Home (Roxo) */
@@ -153,7 +150,8 @@ nav a.nav-animes.active {
     padding: 5rem 2rem;
     border-radius: var(--curvatura);
     margin-bottom: 2rem;
-    border: 5px solid var(--cor-destaque);
+    border-left: 5px solid var(--cor-destaque);
+    /* CORRIGIDO: Apenas borda esquerda, não borda total */
     box-shadow: var(--sombra-padrao);
 }
 
@@ -171,7 +169,8 @@ nav a.nav-animes.active {
 .btn {
     display: inline-block;
     background-color: #00b37e;
-    color: var(--cor-texto-claro);
+    color: #121214 !important;
+    /* CORRIGIDO: Contraste acessível em preto */
     padding: 0.6rem 1.2rem;
     border-radius: var(--curvatura);
     text-decoration: none;
@@ -181,19 +180,18 @@ nav a.nav-animes.active {
 
 .btn:hover {
     background-color: #00875f;
+    color: #fff !important;
 }
 
 /* ==========================================================================
    4. GRADE DE NOTÍCIAS E CARDS (BORDAS DINÂMICAS)
    ========================================================================== */
-
 .titulo-secao {
     color: var(--cor-texto);
     font-size: 2rem;
     margin: 2% 0 2% 0;
     padding-left: 10px;
 }
-
 
 .noticias-grid {
     display: grid;
@@ -274,19 +272,26 @@ nav a.nav-animes.active {
 
 .card.filmes .tag {
     background-color: var(--cor-filmes);
+    color: #fff !important;
 }
 
 .card.games .tag {
     background-color: var(--cor-games);
+    color: #fff !important;
 }
 
 .card.tecnologia .tag {
     background-color: var(--cor-tecnologia);
+    color: #121214 !important;
 }
 
+/* CORRIGIDO: Contraste */
 .card.animes .tag {
     background-color: var(--cor-animes);
+    color: #121214 !important;
 }
+
+/* CORRIGIDO: Contraste */
 
 /* ==========================================================================
    5. PÁGINA DE LEITURA INTERNA
@@ -296,12 +301,9 @@ article.noticia-completa {
     border-radius: var(--curvatura);
     background-color: var(--cor-principal);
     box-shadow: var(--sombra-padrao);
-
-    /* Substitua a borda antiga por esta transparente */
     border-left: 5px solid transparent;
 }
 
-/* --- Aplicação das cores nas bordas laterais da notícia --- */
 article.noticia-completa.filmes {
     border-left-color: var(--cor-filmes);
 }
@@ -318,23 +320,28 @@ article.noticia-completa.animes {
     border-left-color: var(--cor-animes);
 }
 
-/* --- Aplicação das cores nas tags internas da notícia --- */
 article.noticia-completa.filmes .tag {
     background-color: var(--cor-filmes);
+    color: #fff !important;
 }
 
 article.noticia-completa.games .tag {
     background-color: var(--cor-games);
+    color: #fff !important;
 }
 
 article.noticia-completa.tecnologia .tag {
     background-color: var(--cor-tecnologia);
+    color: #121214 !important;
 }
 
+/* CORRIGIDO: Contraste */
 article.noticia-completa.animes .tag {
     background-color: var(--cor-animes);
+    color: #121214 !important;
 }
 
+/* CORRIGIDO: Contraste */
 
 .noticia-header {
     display: flex;
@@ -430,7 +437,6 @@ article.noticia-completa.animes .tag {
     width: 100%;
     height: auto;
     max-width: 600px;
-    /* Mantém o banner compacto e bem centralizado */
     object-fit: contain;
     border-radius: var(--curvatura);
     display: block;
@@ -450,7 +456,7 @@ footer {
     background-color: var(--cor-principal);
     padding: 3rem 5% 1.5rem 5%;
     margin-top: 5rem;
-    border-top: 2px solid #323238;
+    border-top: 2px solid var(--cor-principal);
 }
 
 .footer-container {
@@ -500,6 +506,7 @@ footer {
     font-size: 1rem;
     font-weight: 500;
     transition: color 0.2s ease;
+    /* CORRIGIDO: Resíduo textual removido aqui */
     display: inline-block;
 }
 
@@ -553,18 +560,13 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   9. RESPONSIVIDADE (CELULARES)
-   ========================================================================== */
+/* ==========================================================================9. RESPONSIVIDADE (CELULARES)========================================================================== */
 @media (max-width: 768px) {
-
-    /* Ajustes Gerais de Container */
     .container {
         margin: 1rem auto;
         padding: 0 1rem;
     }
 
-    /* Cabeçalho e Menu */
     header {
         flex-direction: column;
         align-items: center;
@@ -583,42 +585,38 @@ footer {
         font-size: 0.95rem;
     }
 
-    /* Títulos e Destaque */
     .titulo-secao {
         font-size: 1.6rem;
         margin: 1.5rem 0 1rem 0;
     }
 
-    /* Responsividade do Destaque */
     .destaque {
-        padding: 3rem 1.5rem !important; /* Reduz o espaçamento interno no celular */
-        background-position: center center !important; /* Centraliza melhor a imagem de fundo */
-        border-width: 3px !important; /* Diminui a espessura da borda */
+        padding: 3rem 1.5rem !important;
+        background-position: center center !important;
+        border-width: 3px !important;
         margin-bottom: 1.5rem !important;
     }
 
     .destaque h1 {
-        font-size: 1.6rem !important; /* Reduz o tamanho da fonte para não quebrar bizarro */
+        font-size: 1.6rem !important;
         line-height: 1.3 !important;
     }
 
     .destaque p {
-        font-size: 0.95rem !important; /* Deixa o texto descritivo mais confortável para ler */
+        font-size: 0.95rem !important;
         margin-bottom: 1.2rem !important;
     }
 
     .btn {
-        padding: 0.5rem 1rem !important; /* Ajusta o tamanho do botão "Ler mais" */
+        padding: 0.5rem 1rem !important;
         font-size: 0.9rem !important;
     }
 
-    /* Grade de Notícias (Força 1 coluna em telas muito pequenas se necessário) */
     .noticias-grid {
         grid-template-columns: 1fr;
         gap: 1.2rem;
     }
 
-    /* Interna da Notícia */
     .noticia-header .titulo {
         font-size: 1.8rem;
     }
@@ -626,24 +624,19 @@ footer {
     .conteudo-noticia p {
         font-size: 1.05rem;
         text-align: left;
-        /* Melhora a leitura sem hifenação forçada no celular */
     }
 
-    /* Players de Vídeo (Ocupa a largura total na tela pequena) */
     .video-container {
         max-width: 100%;
         padding-bottom: 56.25%;
-        /* Proporção 16:9 perfeita para mobile */
         margin: 1.5rem 0;
     }
 
-    /* Espaços Publicitários */
     .anuncio-img-banner {
         max-width: 100%;
         padding: 0 0.5rem;
     }
 
-    /* Rodapé (Footer Totalmente Adaptável) */
     footer {
         padding: 2.5rem 1rem 1.5rem 1rem;
         margin-top: 3rem;
@@ -657,14 +650,12 @@ footer {
     .footer-col {
         min-width: 100%;
         align-items: center;
-        /* Centraliza o conteúdo no mobile */
         text-align: center;
     }
 
     .footer-col h4 {
         border-left: none;
         border-bottom: 3px solid var(--cor-destaque);
-        /* Transforma a barra em linha inferior */
         padding-left: 0;
         padding-bottom: 0.4rem;
         display: inline-block;
@@ -672,7 +663,6 @@ footer {
 
     .social-links {
         justify-content: center;
-        /* Centraliza os botões de redes sociais */
-        width: 103%;
+        width: 100%;
     }
 }
