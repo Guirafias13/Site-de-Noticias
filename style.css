@@ -4,7 +4,6 @@
 :root {
     --cor-principal: #202024;
     --cor-destaque: #8257e5;
-    /* Roxo padrão do site */
     --cor-fundo: #121214;
     --cor-texto-claro: #fff;
     --cor-texto: #e1e1e6;
@@ -12,15 +11,10 @@
     --curvatura: 10px 0 10px 0;
     --sombra-padrao: 0 4px 15px rgba(0, 0, 0, 0.35);
 
-    /* VARIÁVEIS DE CORES DOS TÓPICOS */
     --cor-filmes: #e52222;
-    /* Vermelho */
     --cor-games: #2d89ef;
-    /* Azul */
     --cor-tecnologia: #00b37e;
-    /* Verde */
     --cor-animes: #c49d03;
-    /* Amarelo */
 }
 
 * {
@@ -101,14 +95,12 @@ nav a {
     margin-left: 0 !important;
 }
 
-/* Hover padrão da Home (Roxo) */
 nav a.nav-home:hover,
 nav a.nav-home.active {
     color: var(--cor-destaque);
     border-bottom: 2px solid var(--cor-destaque);
 }
 
-/* Hovers específicos por categoria */
 nav a.nav-filmes:hover,
 nav a.nav-filmes.active {
     color: var(--cor-filmes);
@@ -133,6 +125,52 @@ nav a.nav-animes.active {
     border-bottom: 2px solid var(--cor-animes);
 }
 
+.busca-container {
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem;
+}
+
+.busca-input {
+    background-color: #121214;
+    border: 1px solid #323238;
+    color: var(--cor-texto-claro);
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    border-radius: var(--curvatura);
+    width: 180px;
+    transition: all 0.3s ease;
+}
+
+.busca-input:focus {
+    outline: none;
+    width: 230px;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 8px rgba(130, 87, 229, 0.4);
+}
+
+.busca-input::placeholder {
+    color: var(--cor-texto-mutado);
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .busca-container {
+        width: 100%;
+        justify-content: center;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .busca-input {
+        width: 80%;
+    }
+
+    .busca-input:focus {
+        width: 90%;
+    }
+}
+
 /* ==========================================================================
    3. BANNER DE DESTAQUE (HOME)
    ========================================================================== */
@@ -151,8 +189,13 @@ nav a.nav-animes.active {
     border-radius: var(--curvatura);
     margin-bottom: 2rem;
     border-left: 5px solid var(--cor-destaque);
-    /* CORRIGIDO: Apenas borda esquerda, não borda total */
     box-shadow: var(--sombra-padrao);
+}
+
+.destaque:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 15px -3px var(--cor-destaque);
 }
 
 .destaque h1 {
@@ -170,7 +213,6 @@ nav a.nav-animes.active {
     display: inline-block;
     background-color: #00b37e;
     color: #121214 !important;
-    /* CORRIGIDO: Contraste acessível em preto */
     padding: 0.6rem 1.2rem;
     border-radius: var(--curvatura);
     text-decoration: none;
@@ -253,21 +295,10 @@ nav a.nav-animes.active {
     font-weight: bold;
 }
 
-/* Aplicação das variáveis nas bordas e tags dos cards */
-.card.filmes {
+/* Card Filmes */
+.card.filmes.card:hover {
     border-bottom-color: var(--cor-filmes);
-}
-
-.card.games {
-    border-bottom-color: var(--cor-games);
-}
-
-.card.tecnologia {
-    border-bottom-color: var(--cor-tecnologia);
-}
-
-.card.animes {
-    border-bottom-color: var(--cor-animes);
+    box-shadow: 0 4px 15px -3px var(--cor-filmes);
 }
 
 .card.filmes .tag {
@@ -275,9 +306,21 @@ nav a.nav-animes.active {
     color: #fff !important;
 }
 
+/* Card Games */
+.card.games.card:hover {
+    border-bottom-color: var(--cor-games);
+    box-shadow: 0 4px 15px -3px var(--cor-games);
+}
+
 .card.games .tag {
     background-color: var(--cor-games);
     color: #fff !important;
+}
+
+/* Card Tecnologia */
+.card.tecnologia.card:hover {
+    border-bottom-color: var(--cor-tecnologia);
+    box-shadow: 0 4px 15px -3px var(--cor-tecnologia);
 }
 
 .card.tecnologia .tag {
@@ -285,13 +328,16 @@ nav a.nav-animes.active {
     color: #121214 !important;
 }
 
-/* CORRIGIDO: Contraste */
+/* Card Animes */
+.card.animes.card:hover {
+    border-bottom-color: var(--cor-animes);
+    box-shadow: 0 4px 15px -3px var(--cor-animes);
+}
+
 .card.animes .tag {
     background-color: var(--cor-animes);
     color: #121214 !important;
 }
-
-/* CORRIGIDO: Contraste */
 
 /* ==========================================================================
    5. PÁGINA DE LEITURA INTERNA
@@ -335,13 +381,10 @@ article.noticia-completa.tecnologia .tag {
     color: #121214 !important;
 }
 
-/* CORRIGIDO: Contraste */
 article.noticia-completa.animes .tag {
     background-color: var(--cor-animes);
     color: #121214 !important;
 }
-
-/* CORRIGIDO: Contraste */
 
 .noticia-header {
     display: flex;
@@ -506,12 +549,13 @@ footer {
     font-size: 1rem;
     font-weight: 500;
     transition: color 0.2s ease;
-    /* CORRIGIDO: Resíduo textual removido aqui */
     display: inline-block;
 }
 
 .footer-col ul li a:hover {
     color: #9466ff !important;
+    border-bottom: 2px solid var(--cor-destaque);
+    transform: translateY(-1px);
 }
 
 .social-links {
@@ -521,14 +565,23 @@ footer {
 }
 
 .social-btn {
-    color: var(--cor-texto-claro);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0 !important;
     border-radius: var(--curvatura);
-    font-size: 0.9rem;
-    font-weight: bold;
     background-color: #29292e;
     transition: background-color 0.2s, transform 0.2s;
+    overflow: hidden;
+}
+
+.social-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 .social-btn.instagram:hover {
@@ -542,13 +595,20 @@ footer {
 }
 
 .social-btn.tiktok:hover {
-    background-color: #010101;
+    background-color: #000000;
     transform: translateY(-2px);
 }
 
 .social-btn.discord:hover {
     background-color: #5865f2;
     transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .social-links {
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 .footer-bottom {
