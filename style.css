@@ -211,7 +211,7 @@ nav a.nav-animes.active {
 
 .btn {
     display: inline-block;
-    background-color: #00b37e;
+    background-color: var(--cor-destaque);
     color: #121214 !important;
     padding: 0.6rem 1.2rem;
     border-radius: var(--curvatura);
@@ -221,7 +221,7 @@ nav a.nav-animes.active {
 }
 
 .btn:hover {
-    background-color: #00875f;
+    background-color: var(--cor-destaque);
     color: #fff !important;
 }
 
