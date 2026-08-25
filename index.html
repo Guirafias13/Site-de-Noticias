@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeekNews - O seu portal de cultura pop</title>
-    
+
     <link rel="preload" href="img/vingadores.jpg" as="image" fetchpriority="high">
-    
+
     <style>
         :root {
             --cor-principal: #202024;
@@ -17,12 +17,14 @@
             --cor-texto: #e1e1e6;
             --curvatura: 10px 0 10px 0;
         }
+
         body {
             margin: 0;
             background-color: var(--cor-fundo);
             color: var(--cor-texto);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
+
         header {
             background-color: var(--cor-principal);
             padding: 1rem 5%;
@@ -40,6 +42,10 @@
     <header>
         <div class="logo"><a href="index.html">Geek<span>News</span></a></div>
         <nav>
+            <form class="busca-container" onsubmit="return false;">
+                <input type="text" placeholder="Buscar no portal..." class="busca-input">
+            </form>
+
             <a href="index.html" class="nav-home">Home</a>
             <a href="filmes.html" class="nav-filmes">Filmes</a>
             <a href="games.html" class="nav-games">Games</a>
@@ -140,7 +146,6 @@
 
         </section>
 
-        <!-- Banner de Anúncio permanece fora da grade para ocupar toda a largura -->
         <div class="anuncio-horizontal">
             <span class="anuncio-tag">Publicidade</span>
             <a href="#" class="anuncio-link">
@@ -205,29 +210,39 @@
             <div class="footer-col">
                 <h4>Categorias</h4>
                 <ul>
-                    <li><a href="filmes.html">Filmes</a></li>
+                    <div class="footer-col.filmes">
+                        <li><a href="filmes.html">Filmes</a></li>
+                    </div>
+                    
                     <li><a href="games.html">Games</a></li>
                     <li><a href="tecnologia.html">Tecnologia</a></li>
                     <li><a href="animes.html">Animes</a></li>
                 </ul>
             </div>
 
-            <!-- Coluna 2: Redes Sociais Fictícias -->
+            <!-- Coluna 2: Redes Sociais com Logos em Imagem -->
             <div class="footer-col">
                 <h4>Siga o Portal</h4>
                 <div class="social-links">
-                    <a href="#" class="social-btn instagram">Instagram</a>
-                    <a href="#" class="social-btn youtube">YouTube</a>
-                    <a href="#" class="social-btn tiktok">TikTok</a>
-                    <a href="#" class="social-btn discord">Discord</a>
+                    <a href="#" class="social-btn instagram" title="Instagram">
+                        <img src="img/instagram.png" alt="Instagram">
+                    </a>
+                    <a href="#" class="social-btn youtube" title="YouTube">
+                        <img src="img/youtube.png" alt="YouTube">
+                    </a>
+                    <a href="#" class="social-btn tiktok" title="TikTok">
+                        <img src="img/tiktok.png" alt="TikTok">
+                    </a>
+                    <a href="#" class="social-btn discord" title="Discord">
+                        <img src="img/discord.png" alt="Discord">
+                    </a>
                 </div>
             </div>
-        </div>
 
-        <!-- Linha de Direitos Autorais -->
-        <div class="footer-bottom">
-            <p>&copy; 2026 GeekNews. Todos os direitos reservados.</p>
-        </div>
+            <!-- Linha de Direitos Autorais -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 GeekNews. Todos os direitos reservados.</p>
+            </div>
     </footer>
 
 </body>
